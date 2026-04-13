@@ -403,7 +403,7 @@
 
     .result-top {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 0.9rem;
       margin-bottom: 0.9rem;
     }
@@ -639,35 +639,7 @@
   </header>
 
   <main>
-    <section class="hero section">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Calculadora de rentabilidad</p>
-          <h1>Descubre cuánto dinero se te va en comisiones y cuánto podrías recuperar.</h1>
-          <p>
-            Esta página está pensada para propietarios y gestores de apartamentos turísticos,
-            viviendas vacacionales y alojamientos de corta estancia que quieren ver, en números,
-            lo que suelen perder cada mes por depender demasiado de plataformas.
-          </p>
-          <p>
-            Introduce tus datos y obtén una estimación rápida. No sustituye un análisis real de tu caso,
-            pero sí te da una referencia clara de cuánto margen puedes estar dejando escapar.
-          </p>
-        </div>
-
-        <div class="hero-card">
-          <h2>Qué vas a calcular aquí</h2>
-          <p>
-            En menos de un minuto podrás ver dos cosas:
-          </p>
-          <ul class="hero-list">
-            <li>Cuánto se te puede ir cada mes en comisiones de Airbnb y Booking.</li>
-            <li>Qué ingreso adicional mensual podrías generar con más noches ocupadas.</li>
-            <li>Por qué optimizar anuncio, web y conversión puede tener un impacto directo en tu margen.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+   
 
     <section class="section">
       <div class="container">
@@ -720,19 +692,28 @@
 
             <div class="result-box" id="resultadoComision" hidden>
               <div class="result-top">
-                <div class="mini-stat">
-                  <small>Facturación mensual estimada</small>
-                  <strong id="facturacionMensual">€0</strong>
-                </div>
-                <div class="mini-stat">
-                  <small>Comisión mensual estimada</small>
-                  <strong id="comisionMensual">€0</strong>
-                </div>
+  <div class="mini-stat">
+    <small>Facturación mensual estimada</small>
+    <strong id="facturacionMensual">€0</strong>
+  </div>
+  <div class="mini-stat">
+    <small>Comisión mensual estimada</small>
+    <strong id="comisionMensual">€0</strong>
+  </div>
+  <div class="mini-stat">
+    <small>Facturación anual estimada</small>
+    <strong id="facturacionAnual">€0</strong>
+  </div>
+  <div class="mini-stat">
+    <small>Comisión anual estimada</small>
+    <strong id="comisionAnual">€0</strong>
+  </div>
+</div>
               </div>
 
               <p class="result-copy" id="fraseComision"></p>
               <p class="microcopy">
-                Cálculo orientativo usando Airbnb anfitrión estándar al 3% y Booking estimado al 15%.
+                Cálculo orientativo usando Airbnb anfitrión estándar al 9% y Booking estimado al 15%.
               </p>
             </div>
           </article>
@@ -758,14 +739,23 @@
 
             <div class="result-box" id="resultadoExtra" hidden>
               <div class="result-top">
-                <div class="mini-stat">
-                  <small>Noches extra estimadas al mes</small>
-                  <strong id="nochesExtra">0</strong>
-                </div>
-                <div class="mini-stat">
-                  <small>Ingreso extra estimado</small>
-                  <strong id="ingresoExtra">€0</strong>
-                </div>
+  <div class="mini-stat">
+    <small>Noches extra estimadas al mes</small>
+    <strong id="nochesExtra">0</strong>
+  </div>
+  <div class="mini-stat">
+    <small>Ingreso extra mensual</small>
+    <strong id="ingresoExtra">€0</strong>
+  </div>
+  <div class="mini-stat">
+    <small>Noches extra estimadas al año</small>
+    <strong id="nochesExtraAnual">0</strong>
+  </div>
+  <div class="mini-stat">
+    <small>Ingreso extra anual</small>
+    <strong id="ingresoExtraAnual">€0</strong>
+  </div>
+</div>
               </div>
 
               <p class="result-copy" id="fraseExtra"></p>
@@ -884,18 +874,22 @@
       }
 
       const facturacion = ocupacion * precio;
+      const facturacionAnual = facturacion * 12;
 
-      const AIRBNB_RATE = 0.03;
+      const AIRBNB_RATE = 0.08;
       const BOOKING_RATE = 0.15;
 
       let comision = 0;
       if (usaAirbnb) comision += facturacion * AIRBNB_RATE;
       if (usaBooking) comision += facturacion * BOOKING_RATE;
+      const comisionAnual = comision * 12;
 
       const resultado = document.getElementById('resultadoComision');
       document.getElementById('facturacionMensual').textContent = formatEuro(facturacion);
       document.getElementById('comisionMensual').textContent = formatEuro(comision);
-
+      document.getElementById('facturacionAnual').textContent = formatEuro(facturacionAnual);
+      document.getElementById('comisionAnual').textContent = formatEuro(comisionAnual);
+      
       let frase = '';
       if (!usaAirbnb && !usaBooking) {
         frase = 'No has activado ninguna plataforma. Si dependes de canal directo, perfecto; si no, activa Airbnb o Booking para calcular el coste aproximado de esa dependencia.';
@@ -952,10 +946,14 @@
       // Ajuste leve para no sobredimensionar
       const nochesExtra = clamp(Math.round((nochesExtraBase + ajustePrecio) * 10) / 10, 1, 6);
       const ingresoExtra = nochesExtra * precio;
+      const nochesExtraAnual = nochesExtra * 12;
+      const ingresoExtraAnual = ingresoExtra * 12;
 
       const resultado = document.getElementById('resultadoExtra');
-      document.getElementById('nochesExtra').textContent = nochesExtra.toFixed(1).replace('.', ',');
+      document.getElementById('nochesExtra').textContent = nochesExtra.toFixed(1).replace('.', ',')
       document.getElementById('ingresoExtra').textContent = formatEuro(ingresoExtra);
+      document.getElementById('nochesExtraAnual').textContent = nochesExtraAnual.toFixed(1).replace('.', ',');
+      document.getElementById('ingresoExtraAnual').textContent = formatEuro(ingresoExtraAnual);
 
       let frase = '';
       if (ingresoExtra < 250) {
@@ -963,7 +961,7 @@
       } else if (ingresoExtra < 600) {
         frase = 'Podrías ganar <span class="success">' + formatEuro(ingresoExtra) + '</span> más al mes. Son ingresos que hoy probablemente se están perdiendo por conversión mejorable, dependencia de plataforma o una presencia digital poco optimizada. Escríbeme y lo revisamos.';
       } else {
-        frase = 'Podrías ganar <span class="success">' + formatEuro(ingresoExtra) + '</span> más al mes. Cuando una ficha, una web o una estrategia comercial convierten por debajo de su potencial, el coste real no es invisible: son reservas que no entran. Contáctame y veamos cuánto de ese ingreso puedes recuperar.';
+        frase = 'Podrías ganar <span class="success">' + formatEuro(ingresoExtra) + '</span> más al mes, lo que equivale a <span class="success">' + formatEuro(ingresoExtraAnual) + '</span> al año. Son ingresos que hoy pueden estar perdiéndose por una ficha, una web o una estrategia comercial mejorables. Contáctame y revisamos tu caso.';
       }
 
       document.getElementById('fraseExtra').innerHTML = frase;
