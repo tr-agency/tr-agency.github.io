@@ -691,25 +691,30 @@
             <button class="btn btn-primary" id="btnComision">Calcular dinero perdido</button>
 
             <div class="result-box" id="resultadoComision" hidden>
-              <div class="result-top">
-  <div class="mini-stat">
-    <small>Facturación mensual estimada</small>
-    <strong id="facturacionMensual">€0</strong>
+  <div class="result-top">
+    <div class="mini-stat">
+      <small>Facturación mensual estimada</small>
+      <strong id="facturacionMensual">€0</strong>
+    </div>
+    <div class="mini-stat">
+      <small>Comisión mensual estimada</small>
+      <strong id="comisionMensual">€0</strong>
+    </div>
+    <div class="mini-stat">
+      <small>Facturación anual estimada</small>
+      <strong id="facturacionAnual">€0</strong>
+    </div>
+    <div class="mini-stat">
+      <small>Comisión anual estimada</small>
+      <strong id="comisionAnual">€0</strong>
+    </div>
   </div>
-  <div class="mini-stat">
-    <small>Comisión mensual estimada</small>
-    <strong id="comisionMensual">€0</strong>
-  </div>
-  <div class="mini-stat">
-    <small>Facturación anual estimada</small>
-    <strong id="facturacionAnual">€0</strong>
-  </div>
-  <div class="mini-stat">
-    <small>Comisión anual estimada</small>
-    <strong id="comisionAnual">€0</strong>
-  </div>
+
+  <p class="result-copy" id="fraseComision"></p>
+  <p class="microcopy">
+    Cálculo orientativo usando Airbnb anfitrión estándar al 9% y Booking estimado al 15%.
+  </p>
 </div>
-              </div>
 
               <p class="result-copy" id="fraseComision"></p>
               <p class="microcopy">
@@ -736,27 +741,32 @@
             </div>
 
             <button class="btn btn-secondary" id="btnExtra">Calcular ingreso extra</button>
+<div class="result-box" id="resultadoExtra" hidden>
+  <div class="result-top">
+    <div class="mini-stat">
+      <small>Noches extra estimadas al mes</small>
+      <strong id="nochesExtra">0</strong>
+    </div>
+    <div class="mini-stat">
+      <small>Ingreso extra mensual</small>
+      <strong id="ingresoExtra">€0</strong>
+    </div>
+    <div class="mini-stat">
+      <small>Noches extra estimadas al año</small>
+      <strong id="nochesExtraAnual">0</strong>
+    </div>
+    <div class="mini-stat">
+      <small>Ingreso extra anual</small>
+      <strong id="ingresoExtraAnual">€0</strong>
+    </div>
+  </div>
 
-            <div class="result-box" id="resultadoExtra" hidden>
-              <div class="result-top">
-  <div class="mini-stat">
-    <small>Noches extra estimadas al mes</small>
-    <strong id="nochesExtra">0</strong>
-  </div>
-  <div class="mini-stat">
-    <small>Ingreso extra mensual</small>
-    <strong id="ingresoExtra">€0</strong>
-  </div>
-  <div class="mini-stat">
-    <small>Noches extra estimadas al año</small>
-    <strong id="nochesExtraAnual">0</strong>
-  </div>
-  <div class="mini-stat">
-    <small>Ingreso extra anual</small>
-    <strong id="ingresoExtraAnual">€0</strong>
-  </div>
+  <p class="result-copy" id="fraseExtra"></p>
+  <p class="microcopy">
+    Estimación prudente basada en ocupación actual y margen típico de mejora comercial.
+    No es una garantía, pero sí una referencia útil para valorar oportunidad.
+  </p>
 </div>
-              </div>
 
               <p class="result-copy" id="fraseExtra"></p>
               <p class="microcopy">
