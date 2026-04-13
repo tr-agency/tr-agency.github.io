@@ -901,15 +901,15 @@
       document.getElementById('comisionAnual').textContent = formatEuro(comisionAnual);
       
       let frase = '';
-      if (!usaAirbnb && !usaBooking) {
-        frase = 'No has activado ninguna plataforma. Si dependes de canal directo, perfecto; si no, activa Airbnb o Booking para calcular el coste aproximado de esa dependencia.';
-      } else if (comision < 150) {
-        frase = 'Estás dejando escapar <span class="danger">' + formatEuro(comision) + '</span> cada mes en comisiones. Puede parecer asumible, pero en un año ya es una cantidad muy seria. Si quieres recuperar más margen, conviene revisarlo.';
-      } else if (comision < 500) {
-        frase = 'Estás perdiendo <span class="danger">' + formatEuro(comision) + '</span> cada mes. Ese dinero podría estar reforzando tu rentabilidad, no la de una plataforma. Si quieres dejar de regalar margen, hablemos.';
-      } else {
-        frase = 'Estás perdiendo <span class="danger">' + formatEuro(comision) + '</span> cada mes. Esto ya no es un detalle: es un drenaje real de beneficio. Si no quieres seguir regalando dinero que es tuyo, contáctame y revisamos cómo reducir esa dependencia.';
-      }
+     if (!usaAirbnb && !usaBooking) {
+      frase = 'No has activado ninguna plataforma. Si dependes de canal directo, perfecto; si no, activa Airbnb o Booking para calcular el coste aproximado de esa dependencia.';
+    } else if (comision < 150) {
+      frase = 'Estás dejando escapar <span class="danger">' + formatEuro(comision) + '</span> al mes, es decir, <span class="danger">' + formatEuro(comisionAnual) + '</span> al año. Puede parecer pequeño al principio, pero acumulado se convierte en una fuga de margen muy seria.';
+    } else if (comision < 500) {
+      frase = 'Estás perdiendo <span class="danger">' + formatEuro(comision) + '</span> al mes, o lo que es lo mismo, <span class="danger">' + formatEuro(comisionAnual) + '</span> al año. Ese dinero debería quedarse en tu alojamiento, no en comisiones evitables.';
+    } else {
+      frase = 'Estás perdiendo <span class="danger">' + formatEuro(comision) + '</span> al mes, lo que equivale a <span class="danger">' + formatEuro(comisionAnual) + '</span> al año. Esto ya no es un detalle: es un drenaje real de beneficio. Si no quieres seguir regalando dinero que es tuyo, contáctame.';
+    }
 
       document.getElementById('fraseComision').innerHTML = frase;
       resultado.hidden = false;
