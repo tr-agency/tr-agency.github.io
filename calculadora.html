@@ -242,11 +242,13 @@
 
     .calc-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
+      align-items: start;
     }
 
     .calc-card {
+      width: 100%;
       border-radius: 28px;
       padding: 1.6rem;
     }
@@ -653,130 +655,117 @@
         </div>
 
         <div class="calc-grid">
-          <article class="calc-card">
-            <h3>1) Calculadora de comisión perdida</h3>
-            <p class="subtext">
-              Calcula tu facturación mensual media y la parte que podría estar yéndose en comisiones
-              de plataformas.
-            </p>
+  <article class="calc-card">
+    <h3>1) Calculadora de comisión perdida</h3>
+    <p class="subtext">
+      Calcula tu facturación mensual media y la parte que podría estar yéndose en comisiones
+      de plataformas.
+    </p>
 
-            <div class="form-group">
-              <label for="ocupacion1">Ocupación media al mes (en noches)</label>
-              <input type="number" id="ocupacion1" min="0" max="31" step="1" placeholder="Ej. 18" />
-            </div>
-
-            <div class="form-group">
-              <label for="precio1">Precio por noche (€)</label>
-              <input type="number" id="precio1" min="0" step="0.01" placeholder="Ej. 95" />
-            </div>
-
-            <div class="toggle-row">
-              <div class="toggle-item">
-                <span>¿Alquilas a través de Airbnb?</span>
-                <label class="switch">
-                  <input type="checkbox" id="airbnb1" checked />
-                  <span class="slider"></span>
-                </label>
-              </div>
-
-              <div class="toggle-item">
-                <span>¿Alquilas a través de Booking?</span>
-                <label class="switch">
-                  <input type="checkbox" id="booking1" checked />
-                  <span class="slider"></span>
-                </label>
-              </div>
-            </div>
-
-            <button class="btn btn-primary" id="btnComision">Calcular dinero perdido</button>
-
-            <div class="result-box" id="resultadoComision" hidden>
-  <div class="result-top">
-    <div class="mini-stat">
-      <small>Facturación mensual estimada</small>
-      <strong id="facturacionMensual">€0</strong>
+    <div class="form-group">
+      <label for="ocupacion1">Ocupación media al mes (en noches)</label>
+      <input type="number" id="ocupacion1" min="0" max="31" step="1" placeholder="Ej. 18" />
     </div>
-    <div class="mini-stat">
-      <small>Comisión mensual estimada</small>
-      <strong id="comisionMensual">€0</strong>
+
+    <div class="form-group">
+      <label for="precio1">Precio por noche (€)</label>
+      <input type="number" id="precio1" min="0" step="0.01" placeholder="Ej. 95" />
     </div>
-    <div class="mini-stat">
-      <small>Facturación anual estimada</small>
-      <strong id="facturacionAnual">€0</strong>
+
+    <div class="toggle-row">
+      <div class="toggle-item">
+        <span>¿Alquilas a través de Airbnb?</span>
+        <label class="switch">
+          <input type="checkbox" id="airbnb1" checked />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-item">
+        <span>¿Alquilas a través de Booking?</span>
+        <label class="switch">
+          <input type="checkbox" id="booking1" checked />
+          <span class="slider"></span>
+        </label>
+      </div>
     </div>
-    <div class="mini-stat">
-      <small>Comisión anual estimada</small>
-      <strong id="comisionAnual">€0</strong>
-    </div>
-  </div>
 
-  <p class="result-copy" id="fraseComision"></p>
-  <p class="microcopy">
-    Cálculo orientativo usando Airbnb anfitrión estándar al 9% y Booking estimado al 15%.
-  </p>
-</div>
+    <button class="btn btn-primary" id="btnComision">Calcular dinero perdido</button>
 
-              <p class="result-copy" id="fraseComision"></p>
-              <p class="microcopy">
-                Cálculo orientativo usando Airbnb anfitrión estándar al 9% y Booking estimado al 15%.
-              </p>
-            </div>
-          </article>
-
-          <article class="calc-card">
-            <h3>2) Calculadora de ingreso extra potencial</h3>
-            <p class="subtext">
-              Estima cuántas noches extra al mes podrías captar mejorando conversión, visibilidad,
-              propuesta y canal directo.
-            </p>
-
-            <div class="form-group">
-              <label for="ocupacion2">Ocupación media al mes (en noches)</label>
-              <input type="number" id="ocupacion2" min="0" max="31" step="1" placeholder="Ej. 18" />
-            </div>
-
-            <div class="form-group">
-              <label for="precio2">Precio por noche (€)</label>
-              <input type="number" id="precio2" min="0" step="0.01" placeholder="Ej. 95" />
-            </div>
-
-            <button class="btn btn-secondary" id="btnExtra">Calcular ingreso extra</button>
-<div class="result-box" id="resultadoExtra" hidden>
-  <div class="result-top">
-    <div class="mini-stat">
-      <small>Noches extra estimadas al mes</small>
-      <strong id="nochesExtra">0</strong>
-    </div>
-    <div class="mini-stat">
-      <small>Ingreso extra mensual</small>
-      <strong id="ingresoExtra">€0</strong>
-    </div>
-    <div class="mini-stat">
-      <small>Noches extra estimadas al año</small>
-      <strong id="nochesExtraAnual">0</strong>
-    </div>
-    <div class="mini-stat">
-      <small>Ingreso extra anual</small>
-      <strong id="ingresoExtraAnual">€0</strong>
-    </div>
-  </div>
-
-  <p class="result-copy" id="fraseExtra"></p>
-  <p class="microcopy">
-    Estimación prudente basada en ocupación actual y margen típico de mejora comercial.
-    No es una garantía, pero sí una referencia útil para valorar oportunidad.
-  </p>
-</div>
-
-              <p class="result-copy" id="fraseExtra"></p>
-              <p class="microcopy">
-                Estimación prudente basada en ocupación actual y margen típico de mejora comercial.
-                No es una garantía, pero sí una referencia útil para valorar oportunidad.
-              </p>
-            </div>
-          </article>
+    <div class="result-box" id="resultadoComision" hidden>
+      <div class="result-top">
+        <div class="mini-stat">
+          <small>Facturación mensual estimada</small>
+          <strong id="facturacionMensual">€0</strong>
         </div>
+        <div class="mini-stat">
+          <small>Comisión mensual estimada</small>
+          <strong id="comisionMensual">€0</strong>
+        </div>
+        <div class="mini-stat">
+          <small>Facturación anual estimada</small>
+          <strong id="facturacionAnual">€0</strong>
+        </div>
+        <div class="mini-stat">
+          <small>Comisión anual estimada</small>
+          <strong id="comisionAnual">€0</strong>
+        </div>
+      </div>
 
+      <p class="result-copy" id="fraseComision"></p>
+      <p class="microcopy">
+        Cálculo orientativo usando Airbnb anfitrión estándar al 9% y Booking estimado al 15%.
+      </p>
+    </div>
+  </article>
+
+  <article class="calc-card">
+    <h3>2) Calculadora de ingreso extra potencial</h3>
+    <p class="subtext">
+      Estima cuántas noches extra al mes podrías captar mejorando conversión, visibilidad,
+      propuesta y canal directo.
+    </p>
+
+    <div class="form-group">
+      <label for="ocupacion2">Ocupación media al mes (en noches)</label>
+      <input type="number" id="ocupacion2" min="0" max="31" step="1" placeholder="Ej. 18" />
+    </div>
+
+    <div class="form-group">
+      <label for="precio2">Precio por noche (€)</label>
+      <input type="number" id="precio2" min="0" step="0.01" placeholder="Ej. 95" />
+    </div>
+
+    <button class="btn btn-secondary" id="btnExtra">Calcular ingreso extra</button>
+
+    <div class="result-box" id="resultadoExtra" hidden>
+      <div class="result-top">
+        <div class="mini-stat">
+          <small>Noches extra estimadas al mes</small>
+          <strong id="nochesExtra">0</strong>
+        </div>
+        <div class="mini-stat">
+          <small>Ingreso extra mensual</small>
+          <strong id="ingresoExtra">€0</strong>
+        </div>
+        <div class="mini-stat">
+          <small>Noches extra estimadas al año</small>
+          <strong id="nochesExtraAnual">0</strong>
+        </div>
+        <div class="mini-stat">
+          <small>Ingreso extra anual</small>
+          <strong id="ingresoExtraAnual">€0</strong>
+        </div>
+      </div>
+
+      <p class="result-copy" id="fraseExtra"></p>
+      <p class="microcopy">
+        Estimación prudente basada en ocupación actual y margen típico de mejora comercial.
+        No es una garantía, pero sí una referencia útil para valorar oportunidad.
+      </p>
+    </div>
+  </article>
+</div>
         <div class="info-grid">
           <article class="info-card">
             <h4>Más margen</h4>
