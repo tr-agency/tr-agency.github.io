@@ -612,6 +612,13 @@
       .cta-link {
         width: 100%;
       }
+      @media (max-width: 980px) {
+  .hero-grid,
+  .calc-grid,
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
     }
   </style>
 </head>
@@ -875,7 +882,7 @@
       const facturacion = ocupacion * precio;
       const facturacionAnual = facturacion * 12;
 
-      const AIRBNB_RATE = 0.08;
+      const AIRBNB_RATE = 0.09;
       const BOOKING_RATE = 0.15;
 
       let comision = 0;
